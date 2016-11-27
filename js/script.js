@@ -2,10 +2,10 @@
 	 var canvas;
 	 var context;	
 	 var blocks = []; // array of blocks
-	 var rows =  3; //total grid rows
-	 var cols = 3; // total grid columns
+	 var rows; //total grid rows
+	 var cols; // total grid columns
 	 var fontSize;
-	 var layout = "V-BL2R";
+	 var layout;
 
 	 /** The side to start and end the grid by row(horizontal) or column(vertical)
       ** (options: V-TL2B, H-TL2R, V-BL2T, H-BL2R)
@@ -31,11 +31,15 @@
 	 /**Create canvas
 	 **(params) width, height
 	 **/
-	 var CreateCanvas = function(id, w, h){
-	 	canvas = document.getElementById(id); // get the canvas element by id
+	 function CreateCanvas(r, c, l){
+	 	canvas = document.getElementById('canvas'); // get the canvas element by id
 
-	 	canvas.width = w;  //set width
-	 	canvas.height = h; //set height
+	 	canvas.width = 800;
+	 	canvas.height= 600;
+
+	 	rows = (r)? r: 3;
+	 	cols = (c)? c: 3;
+	 	layout = (l)? l: "V-TL2B";
 
         //check if an get canvas context
 		if(canvas.getContext) {
@@ -44,14 +48,33 @@
 		}
 	 }
 
-	CreateCanvas('canvas', 800, 600);
+	CreateCanvas();
+	
+	//submit form
+	 $("#grid-form").submit(function(e){
+	 	e.preventDefault();
+	 	var data = $(this).serializeArray();
+	 	var values = {};
+
+	 	$.each(data, function(i, field){
+	 		values[field.name] = field.value;
+	 	});
+
+	 	
+  		var r = values['rows'];	 	
+	 	var c = values['cols'];
+	 	var l = values['layout'];
+
+	 	CreateCanvas(r, c, l);
+
+	 });
 
 	//create blocks
 	function CreateBlocks(){
 		var bw	= canvas.width / rows; // block with (width of canvas divided by rows total)
 		var bh	= canvas.height / cols; // block height (height of canvas divided by collums total)
 
-		fontSize = bh / 3;
+		fontSize = bh / 2.5;
 
 		var id = 1;
 		var block;
@@ -140,7 +163,8 @@
 
 	//create the grid
 	function CreateGrid(){
-		context.font =  fontSize + "px Verdana";
+		context.lineWidth = 2.0;
+		context.font =  fontSize + "pt bold sans-serif";
 		context.strokeStyle = "#ffffff";
 		for (var i = 0; i < blocks.length; i++) {
 			var b = blocks[i];			
