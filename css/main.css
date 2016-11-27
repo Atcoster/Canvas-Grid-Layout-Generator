@@ -1,0 +1,11 @@
+#canvas {
+	width: 100%;
+	max-width: 900px;
+	height: auto;
+	max-height: 600px;
+}
+
+pre {
+	font-size: 0.8em; 
+}
+
