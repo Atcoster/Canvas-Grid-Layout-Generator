@@ -153,7 +153,6 @@
 				}
 			break;
 			default:
-				case "V-TL2B":
 			break;
 		}
 		
