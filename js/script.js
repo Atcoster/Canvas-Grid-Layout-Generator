@@ -2,7 +2,7 @@
 	 var canvas;
 	 var context;	
 	 var blocks = []; // array of blocks
-	 var rows; //total grid rows
+	 var rows; // total grid rows
 	 var cols; // total grid columns
 	 var fontSize;
 	 var layout;
@@ -28,7 +28,7 @@
 
 
 	 /**Create canvas
-	 **(params) row, collum, layout
+	 **(params) rows, columns, layout
 	 **/
 	 function CreateCanvas(r, c, l){
 	 	canvas = document.getElementById('canvas'); // get the canvas element by id
