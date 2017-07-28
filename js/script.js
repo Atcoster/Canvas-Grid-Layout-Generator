@@ -8,7 +8,6 @@
 	 var layout;
 
 	 /** The side to start and end the grid by row(horizontal) or column(vertical)
-      ** (options: V-TL2B, H-TL2R, V-BL2T, H-BL2R)
 	  ** V = Vertical, H = Horizontal , L = Left, R = Right, T = Top and B = Bottom, 2 = to
 	  **/
 	 /**************************************************************************
@@ -29,7 +28,7 @@
 
 
 	 /**Create canvas
-	 **(params) width, height
+	 **(params) row, collum, layout
 	 **/
 	 function CreateCanvas(r, c, l){
 	 	canvas = document.getElementById('canvas'); // get the canvas element by id
